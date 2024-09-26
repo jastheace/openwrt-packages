@@ -904,7 +904,7 @@ endef
 
 define Package/perlbase-math/install
 $(call perlmod/Install,$(1),Math auto/Math,)
-$(call perlmod/InstallBaseTests,$(1),cpan/Math-BigInt-FastCalc/t cpan/Math-BigInt/t cpan/Math-BigRat/t)
+$(call perlmod/InstallBaseTests,$(1),cpan/Math-BigInt-FastCalc/t cpan/Math-BigInt/t)
 endef
 
 $(eval $(call BuildPackage,perlbase-math))
@@ -1112,7 +1112,7 @@ endef
 
 define Package/perlbase-perlio/install
 $(call perlmod/Install,$(1),PerlIO PerlIO.pm auto/PerlIO,)
-$(call perlmod/InstallBaseTests,$(1),cpan/PerlIO-via-QuotedPrint/t ext/PerlIO-encoding/t ext/PerlIO-scalar/t ext/PerlIO-via/t)
+$(call perlmod/InstallBaseTests,$(1),cpan/PerlIO-via-QuotedPrint/t ext/PerlIO-encoding/t ext/PerlIO-via/t)
 endef
 
 $(eval $(call BuildPackage,perlbase-perlio))
