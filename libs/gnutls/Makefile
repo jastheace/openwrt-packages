@@ -164,8 +164,8 @@ ifneq ($(CONFIG_GNUTLS_HEARTBEAT),y)
 CONFIGURE_ARGS += --disable-heartbeat-support
 endif
 
-ifneq ($(CONFIG_GNUTLS_SRP),y)
-CONFIGURE_ARGS += --disable-srp-authentication
+ifeq ($(CONFIG_GNUTLS_SRP),y)
+CONFIGURE_ARGS += --enable-srp-authentication
 endif
 
 ifneq ($(CONFIG_GNUTLS_PSK),y)
@@ -180,9 +180,10 @@ ifneq ($(CONFIG_GNUTLS_OCSP),y)
 CONFIGURE_ARGS += --disable-ocsp
 endif
 
-ifneq ($(CONFIG_GNUTLS_TPM),y)
-CONFIGURE_ARGS += --without-tpm
-endif
+#TPM is currently broken; move to TPM2 which requires https://github.com/tpm2-software/tpm2-tss
+#ifeq ($(CONFIG_GNUTLS_TPM),y)
+#CONFIGURE_ARGS += --with-tpm
+#endif
 
 ifeq ($(CONFIG_GNUTLS_CRYPTODEV),y)
 CONFIGURE_ARGS += --enable-cryptodev
@@ -245,11 +246,12 @@ ifeq ($(CONFIG_GNUTLS_PKCS11),y)
 		$(PKG_INSTALL_DIR)/usr/bin/p11tool \
 		$(1)/usr/bin/
 endif
-ifeq ($(CONFIG_GNUTLS_TPM),y)
-	$(CP) \
-		$(PKG_INSTALL_DIR)/usr/bin/tpmtool \
-		$(1)/usr/bin/
-endif
+#TPM is currently broken
+#ifeq ($(CONFIG_GNUTLS_TPM),y)
+#	$(CP) \
+#		$(PKG_INSTALL_DIR)/usr/bin/tpmtool \
+#		$(1)/usr/bin/
+#endif
 endef
 
 
